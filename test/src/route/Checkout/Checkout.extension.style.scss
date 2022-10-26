@@ -38,17 +38,15 @@ $margin-progress-step: 100px;
 
 .active .progress-step-circle {
   background-color: var(--primary-base-color);
-  padding: 15px;
-  margin: 10px;
-  border-radius: 100%;
   transition: all $transition-time;
 }
 
 .progress-step-circle {
   background-color: var(--placeholder-gradient-color);
-  padding: 15px;
-  margin: 10px;
+  padding: 18px;
+  margin: 5px;
   border-radius: 100%;
+  border: 7px solid var(--breadcrumbs-background);
 }
 
 .progress-step-number {
