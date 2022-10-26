@@ -1,6 +1,6 @@
 $transition-time: 0.5s;
 $step0: 0%;
-$step1: 47%;
+$step1: 50%;
 $step2: 53%;
 $step3: 100%;
 $margin-progress-step: 100px;
@@ -124,12 +124,12 @@ $margin-progress-step: 100px;
 
 .done-2 {
   @include done
-  width: calc(#{$step2} + #{$margin-progress-step} + 25px);
+  width: calc(#{$step2} + #{$margin-progress-step} + 40px);
 }
 
 .remaining-2 {
   @include remaining
-  width: calc(100% - #{$step2} - #{$margin-progress-step} - 25px);
+  width: calc(100% - #{$step2} - #{$margin-progress-step} - 45px);
 }
 
 .done-3 {
@@ -160,6 +160,6 @@ $margin-progress-step: 100px;
 
   .remaining-2 {
     @include remaining
-    width: calc(100% - #{$step2} - 9%);
+    width: calc(100% - #{$step2} - 18%);
   }
 }

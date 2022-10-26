@@ -22,7 +22,7 @@ export class Checkout extends SourceCheckout {
                 }
               </div>
             </div>
-            <span><b>Shipping</b></span>
+            <span><b>{this.stepMap.SHIPPING_STEP.title}</b></span>
           </li>
           <li className={`progress-step ${this.props.checkoutStep === 'BILLING_STEP' || this.props.checkoutStep === 'DETAILS_STEP' ? 'active' : ''}`}>
             <div className='progress-step-circle'>
@@ -34,7 +34,7 @@ export class Checkout extends SourceCheckout {
                 }
               </div>
             </div>
-            <span><b>Review & Payments</b></span>
+            <span><b>{this.stepMap.BILLING_STEP.title}</b></span>
           </li>
         </ul>
       </div>
@@ -68,6 +68,7 @@ export class Checkout extends SourceCheckout {
   }
 
   render() {
+    console.log(this.stepMap);
     this.barProgression();
     return (
         <main block="Checkout">
