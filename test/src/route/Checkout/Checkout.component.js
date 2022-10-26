@@ -8,19 +8,31 @@ export class Checkout extends SourceCheckout {
     return(
       <div id="progress">
         <div id='progress-bar'>
-          <div id='bar-done' className='done-1'></div>
-          <div id='bar-remaining' className='remaining-1'></div>
+          <div id='bar-done' className='done-0'></div>
+          <div id='bar-remaining' className='remaining-0'></div>
         </div>
         <ul id="progress-status">
           <li className={`progress-step ${this.props.checkoutStep === 'SHIPPING_STEP' || this.props.checkoutStep === 'BILLING_STEP' || this.props.checkoutStep === 'DETAILS_STEP' ? 'active' : ''}`}>
             <div className='progress-step-circle'>
-              <div className='progress-step-number'>1</div>
+              <div className='progress-step-number'>
+                {
+                  this.props.checkoutStep === 'BILLING_STEP' || this.props.checkoutStep === 'DETAILS_STEP' ?
+                  <div className='check'></div> :
+                  '1'
+                }
+              </div>
             </div>
             <span><b>Shipping</b></span>
           </li>
           <li className={`progress-step ${this.props.checkoutStep === 'BILLING_STEP' || this.props.checkoutStep === 'DETAILS_STEP' ? 'active' : ''}`}>
             <div className='progress-step-circle'>
-              <div className='progress-step-number'>2</div>
+              <div className='progress-step-number'>
+                {
+                  this.props.checkoutStep === 'DETAILS_STEP' ?
+                  <div className='check'></div>  :
+                  '2'
+                }
+              </div>
             </div>
             <span><b>Review & Payments</b></span>
           </li>
@@ -35,7 +47,14 @@ export class Checkout extends SourceCheckout {
     let bar = document.getElementById('progress-bar');
     if(!bar) return;
 
-    if(this.props.checkoutStep === 'BILLING_STEP') {
+    if(this.props.checkoutStep === 'SHIPPING_STEP') {
+      setTimeout( () => {
+        barDone.classList.remove('done-0');
+        barDone.classList.add('done-1');
+        barRemaining.classList.remove('remaining-0');
+        barRemaining.classList.add('remaining-1');
+      }, 0)
+    } else if(this.props.checkoutStep === 'BILLING_STEP') {
       barDone.classList.remove('done-1');
       barDone.classList.add('done-2');
       barRemaining.classList.remove('remaining-1');

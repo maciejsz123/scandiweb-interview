@@ -1,9 +1,19 @@
 $transition-time: 0.5s;
+$step0: 0%;
 $step1: 47%;
 $step2: 53%;
 $step3: 100%;
 $margin-progress-step: 100px;
 
+@mixin done {
+  background-color: var(--primary-base-color);
+  transition: width $transition-time;
+}
+
+@mixin remaining {
+  background-color: var(--placeholder-gradient-color);
+  transition: width $transition-time;
+}
 .Checkout {
   &::before {
       @include after-mobile {
@@ -31,6 +41,7 @@ $margin-progress-step: 100px;
   padding: 15px;
   margin: 10px;
   border-radius: 100%;
+  transition: all $transition-time;
 }
 
 .progress-step-circle {
@@ -51,6 +62,17 @@ $margin-progress-step: 100px;
 
 .active {
   color: var(--body-content-color);
+}
+
+.check {
+  content: '';
+  top: -2px;
+  right: 0px;
+  width: 12px;
+  height: 6px;
+  transform: rotate(135deg);
+  border-right: 2px solid var(--checkout-address-table-check-mark-selected-color);
+  border-top: 2px solid var(--checkout-address-table-check-mark-selected-color);
 }
 
 #progress {
@@ -80,38 +102,64 @@ $margin-progress-step: 100px;
   flex-flow: row;
 }
 
+.done-0 {
+  @include done
+  width: $step0;
+}
+
+.remaining-0 {
+  @include remaining
+  width: calc(100% - #{$step0});
+}
+
 .done-1 {
-  background-color: var(--primary-base-color);
-  width: calc(#{$step1} - #{$margin-progress-step} - 25px);
-  transition: width $transition-time;
+  @include done
+  width: calc(#{$step1} - #{$margin-progress-step} - 20px);
 }
 
 .remaining-1 {
-  background-color: var(--placeholder-gradient-color);
+  @include remaining
   width: calc(100% - #{$step1} + #{$margin-progress-step} + 25px);
-  transition: width $transition-time;
 }
 
 .done-2 {
-  background-color: var(--primary-base-color);
+  @include done
   width: calc(#{$step2} + #{$margin-progress-step} + 25px);
-  transition: width $transition-time;
 }
 
 .remaining-2 {
-  background-color: var(--placeholder-gradient-color);
-  width: calc(100% - #{$step2} - #{$margin-progress-step} - 30px);
-  transition: width $transition-time;
+  @include remaining
+  width: calc(100% - #{$step2} - #{$margin-progress-step} - 25px);
 }
 
 .done-3 {
-  background-color: var(--primary-base-color);
+  @include done
   width: $step3;
-  transition: width $transition-time;
 }
 
 .remaining-3 {
-  background-color: var(--placeholder-gradient-color);
+  @include remaining
   width: calc(100% - #{$step3});
-  transition: width $transition-time;
+}
+
+@media only screen and(max-width: 900px) {
+  .progress-step {
+    margin: 0 calc(#{$margin-progress-step} - 30px);
+  }
+}
+
+@media only screen and(max-width: 600px) {
+  .progress-step {
+    margin: 0 calc(#{$margin-progress-step} - 80px);
+  }
+
+  .done-1 {
+    @include done
+    width: calc(#{$step1} - 5%);
+  }
+
+  .remaining-2 {
+    @include remaining
+    width: calc(100% - #{$step2} - 9%);
+  }
 }
