@@ -1,0 +1,117 @@
+$transition-time: 0.5s;
+$step1: 47%;
+$step2: 53%;
+$step3: 100%;
+$margin-progress-step: 100px;
+
+.Checkout {
+  &::before {
+      @include after-mobile {
+          min-height: 0;
+          display: none;
+      }
+  }
+}
+
+.progress-step {
+  margin: 0 $margin-progress-step;
+  margin-bottom: 20px;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  color: var(--placeholder-gradient-color);
+}
+
+.progress-step::before {
+  content: '';
+}
+
+.active .progress-step-circle {
+  background-color: var(--primary-base-color);
+  padding: 15px;
+  margin: 10px;
+  border-radius: 100%;
+}
+
+.progress-step-circle {
+  background-color: var(--placeholder-gradient-color);
+  padding: 15px;
+  margin: 10px;
+  border-radius: 100%;
+}
+
+.progress-step-number {
+  color: white;
+  font-weight: bold;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.active {
+  color: var(--body-content-color);
+}
+
+#progress {
+  position: relative;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  background-color: var(--breadcrumbs-background);
+  min-height: var(--breadcrumbs-height)
+}
+
+#progress-status {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-flow: row;
+  justify-content: center;
+}
+
+#progress-bar {
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  top: 25%;
+  display: flex;
+  flex-flow: row;
+}
+
+.done-1 {
+  background-color: var(--primary-base-color);
+  width: calc(#{$step1} - #{$margin-progress-step} - 25px);
+  transition: width $transition-time;
+}
+
+.remaining-1 {
+  background-color: var(--placeholder-gradient-color);
+  width: calc(100% - #{$step1} + #{$margin-progress-step} + 25px);
+  transition: width $transition-time;
+}
+
+.done-2 {
+  background-color: var(--primary-base-color);
+  width: calc(#{$step2} + #{$margin-progress-step} + 25px);
+  transition: width $transition-time;
+}
+
+.remaining-2 {
+  background-color: var(--placeholder-gradient-color);
+  width: calc(100% - #{$step2} - #{$margin-progress-step} - 30px);
+  transition: width $transition-time;
+}
+
+.done-3 {
+  background-color: var(--primary-base-color);
+  width: $step3;
+  transition: width $transition-time;
+}
+
+.remaining-3 {
+  background-color: var(--placeholder-gradient-color);
+  width: calc(100% - #{$step3});
+  transition: width $transition-time;
+}
